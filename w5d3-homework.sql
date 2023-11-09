@@ -46,10 +46,18 @@ GROUP BY first_name, last_name, country;
 
 -- 5. Which staff member had the most
 -- transactions?
-SELECT staff.staff_id, staff.first_name, staff.last_name, COUNT(rental_id) AS Occurences
-FROM rental
+
+-- SELECT staff.staff_id, staff.first_name, staff.last_name, COUNT(rental_id) AS Occurences
+-- FROM rental
+-- INNER JOIN staff
+-- ON rental.staff_id = staff.staff_id
+-- GROUP BY staff.staff_id, staff.first_name, staff.last_name
+-- ORDER BY Occurences DESC;
+
+SELECT staff.staff_id, staff.first_name, staff.last_name, COUNT(payment_id) AS Occurences
+FROM payment
 INNER JOIN staff
-ON rental.staff_id = staff.staff_id
+ON payment.staff_id = staff.staff_id
 GROUP BY staff.staff_id, staff.first_name, staff.last_name
 ORDER BY Occurences DESC;
 
